@@ -27,6 +27,7 @@ module.exports = postcss.plugin('postcss-viewport-units', options => (root, resu
     if (viewportUnitDecls.length === 0) return;
 
     if (hasContent) {
+      if (rule.selector.endsWith('before') || rule.selector.endsWith('after')) return;
       rule.warn(result, `'${rule.selector}' already has a 'content' property, give up to overwrite it.`);
     } else {
       rule.append({
